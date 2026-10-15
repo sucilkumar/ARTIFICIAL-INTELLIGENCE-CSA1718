@@ -1,0 +1,71 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPNT8TV3hr1nzHJ0kP5h40w",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/sucilkumar/ARTIFICIAL-INTELLIGENCE-CSA1718/blob/main/ex%206\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "room = {'A': 1, 'B': 1}\n",
+        "pos = 'A'\n",
+        "\n",
+        "while 1 in room.values():\n",
+        "    print(\"Vacuum at\", pos)\n",
+        "\n",
+        "    if room[pos] == 1:\n",
+        "        room[pos] = 0\n",
+        "        print(\"Room\", pos, \"cleaned\")\n",
+        "\n",
+        "    else:\n",
+        "        pos = 'B' if pos == 'A' else 'A'\n",
+        "\n",
+        "print(\"All rooms are clean\")"
+      ],
+      "metadata": {
+        "id": "MRbETer_-VQ8",
+        "outputId": "87e14aee-aed6-41f3-abd5-a6f8bab0762e",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Vacuum at A\n",
+            "Room A cleaned\n",
+            "Vacuum at A\n",
+            "Vacuum at B\n",
+            "Room B cleaned\n",
+            "All rooms are clean\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
