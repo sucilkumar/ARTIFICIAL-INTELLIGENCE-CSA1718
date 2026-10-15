@@ -1,0 +1,101 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyM5LcX75ZjAn7Fwd2mR2o/s",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/sucilkumar/ARTIFICIAL-INTELLIGENCE-CSA1718/blob/main/ex%205\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from collections import deque\n",
+        "\n",
+        "def solve():\n",
+        "    start = (3, 3, 1)\n",
+        "    goal = (0, 0, 0)\n",
+        "    q = deque([(start, [])])\n",
+        "    visited = set()\n",
+        "\n",
+        "    moves = [(1, 0), (2, 0), (0, 1),\n",
+        "             (0, 2), (1, 1)]\n",
+        "\n",
+        "    while q:\n",
+        "        state, path = q.popleft()\n",
+        "        m, c, boat = state\n",
+        "\n",
+        "        if state == goal:\n",
+        "            for s in path + [state]:\n",
+        "                print(s)\n",
+        "            return\n",
+        "\n",
+        "        if state in visited:\n",
+        "            continue\n",
+        "        visited.add(state)\n",
+        "\n",
+        "        for dm, dc in moves:\n",
+        "            if boat == 1:\n",
+        "                nm, nc = m - dm, c - dc\n",
+        "                nb = 0\n",
+        "            else:\n",
+        "                nm, nc = m + dm, c + dc\n",
+        "                nb = 1\n",
+        "\n",
+        "            if 0 <= nm <= 3 and 0 <= nc <= 3:\n",
+        "                if (nm == 0 or nm >= nc) and \\\n",
+        "                   (3 - nm == 0 or 3 - nm >= 3 - nc):\n",
+        "                    q.append(((nm, nc, nb), path + [state]))\n",
+        "\n",
+        "solve()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xaC_6XT693rU",
+        "outputId": "0d83cf87-ef2a-45e8-9a89-88b7686b1e66"
+      },
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(3, 3, 1)\n",
+            "(3, 1, 0)\n",
+            "(3, 2, 1)\n",
+            "(3, 0, 0)\n",
+            "(3, 1, 1)\n",
+            "(1, 1, 0)\n",
+            "(2, 2, 1)\n",
+            "(0, 2, 0)\n",
+            "(0, 3, 1)\n",
+            "(0, 1, 0)\n",
+            "(1, 1, 1)\n",
+            "(0, 0, 0)\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
