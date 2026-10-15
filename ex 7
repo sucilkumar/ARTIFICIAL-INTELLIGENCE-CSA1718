@@ -1,0 +1,75 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMy0E33viAKCrV5nqt21Qd+",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/sucilkumar/ARTIFICIAL-INTELLIGENCE-CSA1718/blob/main/ex%207\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "graph = {\n",
+        "    'A': ['B', 'C'],\n",
+        "    'B': ['D', 'E'],\n",
+        "    'C': ['F'],\n",
+        "    'D': [],\n",
+        "    'E': [],\n",
+        "    'F': []\n",
+        "}\n",
+        "\n",
+        "def bfs(start):\n",
+        "    visited = []\n",
+        "    queue = [start]\n",
+        "\n",
+        "    while queue:\n",
+        "        node = queue.pop(0)\n",
+        "\n",
+        "        if node not in visited:\n",
+        "            visited.append(node)\n",
+        "            queue.extend(graph[node])\n",
+        "\n",
+        "    print(\"BFS Traversal:\", visited)\n",
+        "\n",
+        "bfs('A')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "kjL28dak-66V",
+        "outputId": "bdd9ccb0-1b9e-49c9-9f1b-8c3b7854be23"
+      },
+      "execution_count": 22,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "BFS Traversal: ['A', 'B', 'C', 'D', 'E', 'F']\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
