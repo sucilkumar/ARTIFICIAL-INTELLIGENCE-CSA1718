@@ -1,0 +1,107 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOHjoXMLbdTHLTIDCcaPKao",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/sucilkumar/ARTIFICIAL-INTELLIGENCE-CSA1718/blob/main/ex%203\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from collections import deque\n",
+        "\n",
+        "goal = (1, 2, 3, 4, 5, 6, 7, 8, 0)\n",
+        "\n",
+        "def solve(start):\n",
+        "    q = deque([(start, [])])\n",
+        "    visited = {start}\n",
+        "\n",
+        "    while q:\n",
+        "        state, path = q.popleft()\n",
+        "\n",
+        "        if state == goal:\n",
+        "            return path + [state]\n",
+        "\n",
+        "        zero = state.index(0)\n",
+        "\n",
+        "        for move in [-3, 3, -1, 1]:\n",
+        "            new = zero + move\n",
+        "\n",
+        "            if 0 <= new < 9:\n",
+        "                if abs(move) == 1 and zero // 3 != new // 3:\n",
+        "                    continue\n",
+        "\n",
+        "                s = list(state)\n",
+        "                s[zero], s[new] = s[new], s[zero]\n",
+        "                s = tuple(s)\n",
+        "\n",
+        "                if s not in visited:\n",
+        "                    visited.add(s)\n",
+        "                    q.append((s, path + [state]))\n",
+        "\n",
+        "    return None\n",
+        "\n",
+        "start = tuple(map(int, input(\"Enter 9 numbers (0 for blank): \").split()))\n",
+        "result = solve(start)\n",
+        "\n",
+        "if result:\n",
+        "    for state in result:\n",
+        "        for i in range(0, 9, 3):\n",
+        "            print(state[i:i+3])\n",
+        "        print()\n",
+        "else:\n",
+        "    print(\"No solution\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1z5rtuj57hbc",
+        "outputId": "5668aef2-c560-417b-fbdb-ec60643bb878"
+      },
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter 9 numbers (0 for blank): 1 2 3 4 0 6 7 5 8\n",
+            "(1, 2, 3)\n",
+            "(4, 0, 6)\n",
+            "(7, 5, 8)\n",
+            "\n",
+            "(1, 2, 3)\n",
+            "(4, 5, 6)\n",
+            "(7, 0, 8)\n",
+            "\n",
+            "(1, 2, 3)\n",
+            "(4, 5, 6)\n",
+            "(7, 8, 0)\n",
+            "\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
