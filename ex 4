@@ -1,0 +1,70 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOEU81q+sHm5yMT7I47pSue",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/sucilkumar/ARTIFICIAL-INTELLIGENCE-CSA1718/blob/main/ex%204\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from itertools import permutations\n",
+        "\n",
+        "letters = 'SENDMORY'\n",
+        "digits = '0123456789'\n",
+        "\n",
+        "for p in permutations(digits, len(letters)):\n",
+        "    d = dict(zip(letters, p))\n",
+        "\n",
+        "    if d['S'] == '0' or d['M'] == '0':\n",
+        "        continue\n",
+        "\n",
+        "    SEND = int(''.join(d[c] for c in 'SEND'))\n",
+        "    MORE = int(''.join(d[c] for c in 'MORE'))\n",
+        "    MONEY = int(''.join(d[c] for c in 'MONEY'))\n",
+        "\n",
+        "    if SEND + MORE == MONEY:\n",
+        "        print(SEND, \"+\", MORE, \"=\", MONEY)\n",
+        "        break"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "wnBgVtWU9YX0",
+        "outputId": "81fc08cc-85af-4efd-ad30-95efbb924538"
+      },
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "9567 + 1085 = 10652\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
