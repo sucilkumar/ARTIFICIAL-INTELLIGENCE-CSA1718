@@ -1,0 +1,95 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMW/FyIblHI+FkDW4oua30o",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/sucilkumar/ARTIFICIAL-INTELLIGENCE-CSA1718/blob/main/ex%203\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from collections import deque\n",
+        "\n",
+        "def water_jug(a, b, target):\n",
+        "    q = deque([(0, 0)])\n",
+        "    visited = set()\n",
+        "\n",
+        "    while q:\n",
+        "        x, y = q.popleft()\n",
+        "\n",
+        "        if (x, y) in visited:\n",
+        "            continue\n",
+        "\n",
+        "        visited.add((x, y))\n",
+        "        print(x, y)\n",
+        "\n",
+        "        if x == target or y == target:\n",
+        "            print(\"Target reached!\")\n",
+        "            return\n",
+        "\n",
+        "        q.append((a, y))       # Fill jug A\n",
+        "        q.append((x, b))       # Fill jug B\n",
+        "        q.append((0, y))       # Empty jug A\n",
+        "        q.append((x, 0))       # Empty jug B\n",
+        "\n",
+        "        pour = min(x, b - y)\n",
+        "        q.append((x - pour, y + pour))  # Pour A to B\n",
+        "\n",
+        "        pour = min(y, a - x)\n",
+        "        q.append((x + pour, y - pour))  # Pour B to A\n",
+        "\n",
+        "    print(\"Solution not possible\")\n",
+        "\n",
+        "water_jug(4, 3, 2)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "g2AxCD748jN9",
+        "outputId": "01668947-9304-4b58-e8d3-20f89f41ebc1"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "0 0\n",
+            "4 0\n",
+            "0 3\n",
+            "4 3\n",
+            "1 3\n",
+            "3 0\n",
+            "1 0\n",
+            "3 3\n",
+            "0 1\n",
+            "4 2\n",
+            "Target reached!\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
