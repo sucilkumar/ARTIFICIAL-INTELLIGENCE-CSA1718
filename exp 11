@@ -1,0 +1,117 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOa2kkbTgK2391U4ywv3b4W",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/sucilkumar/ARTIFICIAL-INTELLIGENCE-CSA1718/blob/main/exp%2011\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gFSQPtkUvMxL",
+        "outputId": "89ec507c-e22e-48dd-9bf3-adb992618a12"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Map Coloring Solution:\n",
+            "A : Red\n",
+            "B : Green\n",
+            "C : Blue\n",
+            "D : Red\n"
+          ]
+        }
+      ],
+      "source": [
+        "\n",
+        "# Map Coloring Problem using CSP and Backtracking\n",
+        "\n",
+        "# Define the map regions\n",
+        "regions = ['A', 'B', 'C', 'D']\n",
+        "\n",
+        "# Define adjacent regions (constraints)\n",
+        "neighbors = {\n",
+        "    'A': ['B', 'C'],\n",
+        "    'B': ['A', 'C', 'D'],\n",
+        "    'C': ['A', 'B', 'D'],\n",
+        "    'D': ['B', 'C']\n",
+        "}\n",
+        "\n",
+        "# Available colors\n",
+        "colors = ['Red', 'Green', 'Blue']\n",
+        "\n",
+        "# Store assigned colors\n",
+        "color_assignment = {}\n",
+        "\n",
+        "\n",
+        "# Check whether a color is valid\n",
+        "def is_valid(region, color):\n",
+        "    for neighbor in neighbors[region]:\n",
+        "        if neighbor in color_assignment:\n",
+        "            if color_assignment[neighbor] == color:\n",
+        "                return False\n",
+        "    return True\n",
+        "\n",
+        "\n",
+        "# Solve CSP using backtracking\n",
+        "def solve():\n",
+        "    if len(color_assignment) == len(regions):\n",
+        "        return True\n",
+        "\n",
+        "    # Select an uncolored region\n",
+        "    for region in regions:\n",
+        "        if region not in color_assignment:\n",
+        "            break\n",
+        "\n",
+        "    # Try each available color\n",
+        "    for color in colors:\n",
+        "        if is_valid(region, color):\n",
+        "            color_assignment[region] = color\n",
+        "\n",
+        "            if solve():\n",
+        "                return True\n",
+        "\n",
+        "            # Backtrack\n",
+        "            del color_assignment[region]\n",
+        "\n",
+        "    return False\n",
+        "\n",
+        "\n",
+        "# Main program\n",
+        "if solve():\n",
+        "    print(\"Map Coloring Solution:\")\n",
+        "    for region, color in color_assignment.items():\n",
+        "        print(region, \":\", color)\n",
+        "else:\n",
+        "    print(\"No solution exists.\")\n"
+      ]
+    }
+  ]
+}
